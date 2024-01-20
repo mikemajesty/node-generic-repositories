@@ -1,0 +1,32 @@
+{
+  "name": "nestjs-generic-repositories",
+  "version": "1.0.2",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "lint": "yarn eslint \"./libs/*.ts\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.16.0",
+    "@typescript-eslint/parser": "^6.16.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.2",
+    "eslint-plugin-security": "^2.1.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "eslint-plugin-you-dont-need-lodash-underscore": "^6.13.0",
+    "prettier": "^3.1.1",
+    "typescript": "^5.1.0"
+  },
+  "dependencies": {
+    "mongoose": "^8.0.3",
+    "sequelize": "^6.35.2",
+    "sequelize-typescript": "^2.1.6",
+    "typeorm": "^0.3.17",
+    "zod": "^3.22.4"
+  }
+}
