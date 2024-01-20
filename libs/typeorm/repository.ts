@@ -1,8 +1,16 @@
-import { IEntity } from '../entity';
-import { BaseEntity, FindOneOptions, FindOptionsSelectByString, FindOptionsWhere, In, Raw, Repository, SaveOptions } from 'typeorm';
-
+import {
+  BaseEntity,
+  FindOneOptions,
+  FindOptionsSelectByString,
+  FindOptionsWhere,
+  In,
+  Raw,
+  Repository,
+  SaveOptions
+} from 'typeorm';
 
 import { IRepository } from '../adapter';
+import { IEntity } from '../entity';
 import { CreatedModel, CreatedOrUpdateModel, DatabaseOperationCommand, RemovedModel, UpdatedModel } from '../types';
 
 type Model = BaseEntity & IEntity;
@@ -25,7 +33,7 @@ export class TypeORMRepository<T extends Model> implements IRepository<T> {
   }
 
   async createOrUpdate<TUpdate = Partial<T>>(updated: TUpdate): Promise<CreatedOrUpdateModel> {
-    const documentEntity: IEntity = updated as IEntity
+    const documentEntity: IEntity = updated as IEntity;
     if (!documentEntity?.id) {
       throw new Error('id is required');
     }
@@ -120,7 +128,10 @@ export class TypeORMRepository<T extends Model> implements IRepository<T> {
     };
   }
 
-  async findOneAndUpdate<TQuery = Partial<T>, TUpdate = Partial<T>>(filter: TQuery, updated: TUpdate): Promise<T | null> {
+  async findOneAndUpdate<TQuery = Partial<T>, TUpdate = Partial<T>>(
+    filter: TQuery,
+    updated: TUpdate
+  ): Promise<T | null> {
     await this.repository.update(filter as FindOptionsWhere<T>, updated as object);
 
     return this.findOne(filter);
@@ -137,7 +148,10 @@ export class TypeORMRepository<T extends Model> implements IRepository<T> {
     };
   }
 
-  async findOneWithSelectFields<TQuery = Partial<T>>(filter: TQuery, includeProperties: (keyof T)[]): Promise<T | null> {
+  async findOneWithSelectFields<TQuery = Partial<T>>(
+    filter: TQuery,
+    includeProperties: (keyof T)[]
+  ): Promise<T | null> {
     const select = includeProperties.map((e) => `${e.toString()}`);
     return this.repository.findOne({
       where: filter as FindOptionsWhere<T>,

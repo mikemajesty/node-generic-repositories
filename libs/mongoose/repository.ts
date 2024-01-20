@@ -14,7 +14,7 @@ import { IEntity } from '../entity';
 import { CreatedModel, CreatedOrUpdateModel, DatabaseOperationCommand, RemovedModel, UpdatedModel } from '../types';
 import { validateFindByCommandsFilter } from '../utils';
 
-export class MongoRepository<T extends Document> implements IRepository<T> {
+export class MongooseRepository<T extends Document> implements IRepository<T> {
   constructor(private readonly model: Model<T>) {}
 
   async insertMany<TOptions = unknown>(documents: T[], saveOptions?: TOptions): Promise<void> {
